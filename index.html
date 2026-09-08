@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>E-Portofolio PPG - Fatasya Aulia Suyono</title>
+
+    <!-- Accessibility / SEO -->
+    <meta
+      name="description"
+      content="E-Portofolio PPG Prajabatan Fatasya Aulia Suyono. Calon pendidik profesional bidang Informatika."
+    />
+
+    <!-- Google Fonts: Outfit (Heading/Modern Tech) & Inter (Body/Clean Editorial) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome for Minimalist Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP for precise mechanical animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Design System Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Outfit", "sans-serif"],
+              body: ["Inter", "sans-serif"],
+              mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+            },
+            colors: {
+              teal: {
+                main: "#005F73", // Deep Teal
+                soft: "#E0F0F2", // Pale Teal
+              },
+              aqua: {
+                main: "#94D2BD", // Light Aqua
+                soft: "#E8F5F1", // Very Soft Aqua
+              },
+              neutral: {
+                bg: "#F0F4F8", // Soft Light Grey (Background)
+                card: "#FFFFFF", // White
+                text: "#264653", // Charcoal (Text)
+                muted: "#5C7C89", // Lighter Charcoal
+                border: "#D1E1E6", // Soft Border
+              },
+              accent: {
+                peach: "#FFF9F5", // Very soft peach
+                yellow: "#FEF9C3", // Soft Yellow
+              },
+            },
+            boxShadow: {
+              bento: "6px 6px 0px rgba(0, 95, 115, 0.1)",
+              "bento-hover": "2px 2px 0px rgba(0, 95, 115, 0.15)",
+              badge: "3px 3px 0px rgba(0, 95, 115, 0.08)",
+            },
+            animation: {
+              "float-slow": "float 6s ease-in-out infinite",
+              "float-medium": "float 4s ease-in-out infinite alternate",
+              "float-fast": "float 3s ease-in-out infinite",
+              "pulse-teal":
+                "pulseTeal 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+                "50%": { transform: "translateY(-12px) rotate(3deg)" },
+              },
+              pulseTeal: {
+                "0%, 100%": { opacity: 1 },
+                "50%": { opacity: 0.6 },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Base & Background */
+      body {
+        background-color: #f0f4f8;
+        color: #264653;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Subtle Educational/Tech Grid Background */
+      .bg-tech-grid {
+        background-image: radial-gradient(#94d2bd 1.5px, transparent 1.5px);
+        background-size: 32px 32px;
+        opacity: 0.25;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      ::selection {
+        background-color: #94d2bd;
+        color: #005f73;
+      }
+
+      /* Bento Grid Card Styling */
+      .bento-card {
+        background-color: #ffffff;
+        border: 2px solid #d1e1e6;
+        border-radius: 1.5rem;
+        box-shadow: 6px 6px 0px rgba(0, 95, 115, 0.06);
+        transition:
+          transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.2s ease;
+      }
+
+      /* Mechanical Hover Effect */
+      .mechanical-hover:hover {
+        transform: translate(4px, 4px);
+        box-shadow: 2px 2px 0px rgba(0, 95, 115, 0.12);
+        border-color: #94d2bd;
+      }
+
+      /* Button Styling */
+      .btn-teal {
+        background-color: #005f73;
+        color: #ffffff;
+        border: 2px solid #005f73;
+        box-shadow: 4px 4px 0px rgba(0, 95, 115, 0.2);
+        transition: all 0.2s ease;
+      }
+      .btn-teal:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0px rgba(0, 95, 115, 0.3);
+        background-color: #00728a;
+      }
+
+      /* Navbar active state */
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #005f73;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* Reduced motion for accessibility */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="font-body antialiased selection:bg-aqua-main selection:text-teal-main"
+  >
+    <!-- Background Pattern -->
+    <div class="bg-tech-grid"></div>
+
+    <!-- Floating Decorative Background Elements (Mengisi Ruang Kosong) -->
+    <div
+      class="fixed top-32 left-10 text-aqua-main opacity-40 text-4xl animate-float-slow -z-10"
+    >
+      <i class="fas fa-code"></i>
+    </div>
+    <div
+      class="fixed bottom-40 right-10 text-teal-soft opacity-60 text-6xl animate-float-medium -z-10"
+    >
+      <i class="fas fa-graduation-cap"></i>
+    </div>
+    <div
+      class="fixed top-1/2 left-8 text-accent-yellow opacity-50 text-2xl animate-float-fast -z-10"
+    >
+      <i class="fas fa-star"></i>
+    </div>
+    <div
+      class="fixed top-1/4 right-20 text-aqua-main opacity-30 text-3xl animate-float-slow -z-10"
+    >
+      <i class="fas fa-laptop-code"></i>
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav
+      class="fixed w-full z-50 top-4 px-4 md:px-8 transition-all duration-300"
+      id="navbar"
+    >
+      <div
+        class="max-w-6xl mx-auto bg-white/90 backdrop-blur-md border-2 border-neutral-border rounded-2xl px-5 md:px-6 py-3 flex justify-between items-center shadow-badge"
+      >
+        <!-- Brand -->
+        <div class="flex items-center gap-3 shrink-0 cursor-pointer">
+          <div
+            class="w-10 h-10 bg-teal-main text-white rounded-xl flex items-center justify-center font-display font-bold text-xl border-2 border-teal-main"
+          >
+            F<span class="text-aqua-main">.</span>
+          </div>
+          <div class="hidden sm:block">
+            <h1
+              class="font-bold text-neutral-text text-base leading-none tracking-tight font-display"
+            >
+              Fatasya.
+            </h1>
+            <p
+              class="text-[9px] text-neutral-muted font-bold uppercase tracking-widest mt-0.5"
+            >
+              E-Portofolio
+            </p>
+          </div>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div
+          class="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-muted"
+        >
+          <a
+            href="index.html"
+            class="nav-link active text-teal-main font-semibold"
+            >Beranda</a
+          >
+          <a href="profil.html" class="nav-link hover:text-teal-main">Profil</a>
+          <a href="lembar-kerja-3.html" class="nav-link hover:text-teal-main"
+            >Lembar Kerja 3</a
+          >
+          <a href="uts.html" class="nav-link hover:text-teal-main">UTS</a>
+        </div>
+
+        <!-- CTA / Mobile Toggle -->
+        <div class="flex items-center gap-3 shrink-0">
+          <a
+            href="#kontak"
+            aria-label="Hubungi Saya"
+            class="hidden md:flex btn-teal px-5 py-2.5 rounded-xl text-sm font-bold items-center gap-2 font-display"
+          >
+            Hubungi Saya <i class="fab fa-whatsapp text-aqua-main"></i>
+          </a>
+          <button
+            id="mobile-menu-btn"
+            aria-label="Toggle Menu"
+            class="md:hidden w-10 h-10 bg-aqua-soft text-teal-main rounded-xl border-2 border-aqua-main flex items-center justify-center focus:outline-none"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden absolute top-20 left-4 right-4 bg-white border-2 border-neutral-border shadow-bento rounded-2xl flex flex-col p-4 space-y-2 font-medium z-40"
+      >
+        <a
+          href="index.html"
+          class="block w-full text-teal-main bg-teal-soft p-3 rounded-xl font-bold font-display"
+          >Beranda</a
+        >
+        <a
+          href="profil.html"
+          class="block w-full text-neutral-text hover:bg-neutral-bg p-3 rounded-xl"
+          >Profil</a
+        >
+        <a
+          href="lembar-kerja-3.html"
+          class="block w-full text-neutral-text hover:bg-neutral-bg p-3 rounded-xl"
+          >Lembar Kerja 3</a
+        >
+        <a
+          href="uts.html"
+          class="block w-full text-neutral-text hover:bg-neutral-bg p-3 rounded-xl"
+          >UTS</a
+        >
+      </div>
+    </nav>
+
+    <main
+      class="w-full max-w-6xl mx-auto pt-36 pb-20 px-5 md:px-8 space-y-16 md:space-y-24"
+    >
+      <!-- ================= HERO SECTION ================= -->
+      <section
+        id="hero"
+        class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10"
+      >
+        <!-- Left Text Content -->
+        <div
+          class="lg:col-span-7 space-y-6 z-10 order-2 lg:order-1 gs-hero-item"
+        >
+          <div
+            class="inline-flex items-center gap-2 bg-white border-2 border-aqua-main px-4 py-1.5 rounded-full shadow-badge"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-teal-main animate-pulse-teal"
+            ></span>
+            <span
+              class="text-[10px] font-bold text-teal-main uppercase tracking-widest font-display"
+              >Mahasiswa PPG Informatika</span
+            >
+          </div>
+
+          <div class="space-y-2">
+            <p
+              class="text-neutral-muted font-medium text-lg flex items-center gap-2"
+            >
+              Hi, 👋 Saya,
+            </p>
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-neutral-text font-display leading-tight tracking-tight relative inline-block"
+            >
+              Fatasya Aulia Suyono
+              <span
+                class="absolute -top-4 -right-8 text-2xl animate-float-medium"
+                >✨</span
+              >
+            </h1>
+            <h2
+              class="text-2xl md:text-3xl font-bold text-teal-main font-display mt-2"
+            >
+              Calon Pendidik Profesional
+            </h2>
+          </div>
+
+          <p
+            class="text-neutral-muted leading-relaxed max-w-xl text-base md:text-lg"
+          >
+            Selamat datang di ruang rekam jejak akademik saya. Sebagai mahasiswa
+            Pendidikan Profesi Guru (PPG) bidang Informatika, saya berdedikasi
+            untuk menciptakan lingkungan belajar yang inovatif, bermakna, dan
+            relevan dengan perkembangan teknologi masa kini.
+          </p>
+
+          <div class="pt-4 flex flex-wrap gap-4 items-center">
+            <a
+              href="#navigasi"
+              aria-label="Mulai Jelajahi"
+              class="btn-teal px-8 py-3.5 rounded-xl font-bold font-display text-sm md:text-base inline-flex items-center gap-3 group"
+            >
+              Mulai Jelajahi
+              <i
+                class="fas fa-arrow-down transition-transform group-hover:translate-y-1 text-aqua-main"
+              ></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Visual Graphic Bento -->
+        <div
+          class="lg:col-span-5 relative order-1 lg:order-2 flex justify-center lg:justify-end gs-hero-item"
+        >
+          <!-- Main Frame Bento Card -->
+          <div
+            class="relative w-full max-w-[340px] aspect-[4/5] bento-card p-3 bg-white z-10 mechanical-hover"
+          >
+            <div
+              class="w-full h-full bg-neutral-bg rounded-xl overflow-hidden relative border border-neutral-border"
+            >
+              <img
+                src="https://drive.google.com/thumbnail?id=1PkvIPrp6QxnFVxzxR5p2UThMfE1PeVHq&sz=w800"
+                alt="Fatasya Aulia Suyono"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+
+            <!-- Decorative Educational Tech Badges (Floating) -->
+            <div
+              class="absolute -left-6 top-10 bg-white border-2 border-neutral-border shadow-badge rounded-lg p-3 flex items-center justify-center gap-2 z-20 animate-float-medium"
+            >
+              <span class="text-teal-main font-mono font-bold text-sm"
+                >&lt;/&gt;</span
+              >
+            </div>
+
+            <div
+              class="absolute -right-6 bottom-12 bg-white border-2 border-aqua-main shadow-badge rounded-xl px-4 py-2 flex items-center gap-2 z-20 animate-float-slow"
+            >
+              <i class="fas fa-graduation-cap text-teal-main"></i>
+              <span
+                class="text-[10px] font-bold text-neutral-text font-display tracking-widest"
+                >FATASYA</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= MENU NAVIGASI UTAMA (BARU) ================= -->
+      <!-- Section ini ditambahkan agar halaman beranda lebih informatif dan berfungsi sebagai hub yang jelas -->
+      <section id="navigasi" class="pt-4">
+        <div class="text-center mb-10 gs-reveal">
+          <p
+            class="text-[10px] font-bold text-teal-main uppercase tracking-widest font-display bg-white border-2 border-teal-main px-3 py-1 rounded-full inline-block shadow-sm"
+          >
+            Jelajahi Portofolio
+          </p>
+          <h2 class="text-3xl font-bold text-neutral-text font-display mt-4">
+            Menu Utama
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Card 1: Profil -->
+          <a
+            href="profil.html"
+            class="bento-card bg-white p-6 md:p-8 mechanical-hover flex flex-col gap-4 gs-reveal group cursor-pointer h-full"
+          >
+            <div
+              class="w-14 h-14 bg-teal-soft text-teal-main rounded-2xl flex items-center justify-center text-2xl border-2 border-teal-main shadow-sm group-hover:scale-110 transition-transform"
+            >
+              <i class="far fa-id-badge"></i>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-neutral-text font-display mb-2 group-hover:text-teal-main transition-colors"
+              >
+                Profil Saya
+              </h3>
+              <p class="text-sm text-neutral-muted leading-relaxed">
+                Mengenal lebih dekat identitas, latar belakang, dan visi saya
+                sebagai calon pendidik profesional.
+              </p>
+            </div>
+            <div
+              class="mt-auto pt-4 flex items-center gap-2 text-teal-main font-bold text-sm font-display"
+            >
+              Lihat Profil
+              <i
+                class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"
+              ></i>
+            </div>
+          </a>
+
+          <!-- Card 2: Lembar Kerja 3 -->
+          <a
+            href="lembar-kerja-3.html"
+            class="bento-card bg-white p-6 md:p-8 mechanical-hover flex flex-col gap-4 gs-reveal group cursor-pointer h-full delay-100"
+          >
+            <div
+              class="w-14 h-14 bg-aqua-soft text-teal-main rounded-2xl flex items-center justify-center text-2xl border-2 border-aqua-main shadow-sm group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-neutral-text font-display mb-2 group-hover:text-teal-main transition-colors"
+              >
+                Lembar Kerja 3
+              </h3>
+              <p class="text-sm text-neutral-muted leading-relaxed">
+                Refleksi komprehensif terhadap dokumen perencanaan, media, LKPD,
+                hingga instrumen asesmen.
+              </p>
+            </div>
+            <div
+              class="mt-auto pt-4 flex items-center gap-2 text-teal-main font-bold text-sm font-display"
+            >
+              Buka Dokumen
+              <i
+                class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"
+              ></i>
+            </div>
+          </a>
+
+          <!-- Card 3: UTS -->
+          <a
+            href="uts.html"
+            class="bento-card bg-white p-6 md:p-8 mechanical-hover flex flex-col gap-4 gs-reveal group cursor-pointer h-full delay-200"
+          >
+            <div
+              class="w-14 h-14 bg-accent-peach text-orange-500 rounded-2xl flex items-center justify-center text-2xl border-2 border-orange-200 shadow-sm group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-neutral-text font-display mb-2 group-hover:text-orange-500 transition-colors"
+              >
+                Ujian Tengah Semester
+              </h3>
+              <p class="text-sm text-neutral-muted leading-relaxed">
+                Penyajian modul ajar terbaik dan bukti video pelaksanaan praktik
+                mengajar mandiri siklus 1.
+              </p>
+            </div>
+            <div
+              class="mt-auto pt-4 flex items-center gap-2 text-orange-500 font-bold text-sm font-display"
+            >
+              Lihat Evaluasi
+              <i
+                class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"
+              ></i>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ================= ABOUT / TENTANG PORTOFOLIO SECTION ================= -->
+      <section id="tentang" class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-6">
+        <!-- Content Left -->
+        <div
+          class="lg:col-span-8 bento-card mechanical-hover p-8 md:p-10 flex flex-col justify-center gs-reveal bg-white"
+        >
+          <div
+            class="flex items-center gap-4 mb-6 border-b-2 border-neutral-border pb-4"
+          >
+            <div
+              class="w-12 h-12 bg-teal-soft text-teal-main rounded-xl flex items-center justify-center border-2 border-teal-main shadow-sm text-xl animate-float-slow"
+            >
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div>
+              <p
+                class="text-[10px] font-bold text-neutral-muted uppercase tracking-widest font-display"
+              >
+                Tentang Portofolio
+              </p>
+              <h2
+                class="text-2xl md:text-3xl font-bold text-neutral-text font-display mt-1"
+              >
+                Membangun Pembelajaran Bermakna
+              </h2>
+            </div>
+          </div>
+
+          <div
+            class="space-y-4 text-neutral-muted leading-relaxed text-sm md:text-base text-justify"
+          >
+            <p>
+              E-Portofolio ini disusun sebagai bentuk refleksi komprehensif atas
+              perjalanan saya selama mengikuti program Pendidikan Profesi Guru
+              (PPG). Ruang digital ini merekam setiap proses belajar, praktik
+              pengalaman lapangan, hingga inovasi pengajaran yang saya
+              kembangkan untuk menciptakan ekosistem kelas yang adaptif.
+            </p>
+            <p>
+              Dengan latar belakang di bidang Informatika, saya meyakini bahwa
+              teknologi bukan sekadar alat bantu, melainkan katalisator untuk
+              menumbuhkan nalar kritis dan kreativitas peserta didik. Portofolio
+              ini adalah bukti nyata komitmen saya untuk terus belajar dan
+              bertumbuh menjadi pendidik yang berpusat pada kebutuhan siswa di
+              era digital.
+            </p>
+          </div>
+        </div>
+
+        <!-- Graphic Right (Educational Tech Design System) -->
+        <div
+          class="lg:col-span-4 bento-card p-6 bg-accent-peach flex flex-col gap-4 relative overflow-hidden gs-reveal mechanical-hover border-neutral-border"
+        >
+          <!-- Background Decoration -->
+          <div
+            class="absolute -right-10 -bottom-10 opacity-5 text-[150px] pointer-events-none"
+          >
+            <i class="fas fa-laptop-code"></i>
+          </div>
+
+          <h3
+            class="font-display font-bold text-neutral-text text-sm uppercase tracking-widest mb-2 z-10 border-b-2 border-neutral-border pb-2"
+          >
+            Core Focus
+          </h3>
+
+          <!-- Tiny Data Cards -->
+          <div
+            class="bg-white border-2 border-neutral-border rounded-xl p-4 shadow-sm z-10 flex items-center gap-3 hover:border-teal-main transition-colors"
+          >
+            <div
+              class="w-10 h-10 bg-aqua-soft text-teal-main rounded-lg flex items-center justify-center text-lg"
+            >
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <span class="font-bold text-sm text-neutral-text font-display"
+              >Pedagogical Skill</span
+            >
+          </div>
+
+          <div
+            class="bg-white border-2 border-neutral-border rounded-xl p-4 shadow-sm z-10 flex items-center gap-3 hover:border-teal-main transition-colors"
+          >
+            <div
+              class="w-10 h-10 bg-teal-soft text-teal-main rounded-lg flex items-center justify-center text-lg"
+            >
+              <i class="fas fa-code"></i>
+            </div>
+            <span class="font-bold text-sm text-neutral-text font-display"
+              >Tech Integration</span
+            >
+          </div>
+
+          <div
+            class="bg-white border-2 border-aqua-main rounded-xl p-4 shadow-badge z-10 flex items-center gap-3 hover:scale-[1.02] transition-transform"
+          >
+            <div
+              class="w-10 h-10 bg-teal-main text-white rounded-lg flex items-center justify-center text-lg"
+            >
+              <i class="fas fa-seedling"></i>
+            </div>
+            <span class="font-bold text-sm text-neutral-text font-display"
+              >Student Growth</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACT SECTION ================= -->
+      <section id="kontak" class="pt-6 pb-6">
+        <div class="text-center mb-8 gs-reveal">
+          <p
+            class="text-[10px] font-bold text-teal-main uppercase tracking-widest font-display bg-white border-2 border-teal-main px-3 py-1 rounded-full inline-block shadow-sm"
+          >
+            Informasi Kontak
+          </p>
+          <h2 class="text-3xl font-bold text-neutral-text font-display mt-4">
+            Terhubung Bersama Saya
+          </h2>
+        </div>
+
+        <!-- Bento Contact Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- WhatsApp -->
+          <a
+            href="https://wa.me/6285732003774"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bento-card mechanical-hover bg-white p-6 flex flex-col items-center text-center gap-3 gs-reveal group cursor-pointer"
+          >
+            <div
+              class="w-14 h-14 bg-white border-2 border-neutral-border rounded-2xl flex items-center justify-center text-3xl text-neutral-muted group-hover:text-teal-main group-hover:border-teal-main transition-all shadow-sm group-hover:scale-110"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div>
+              <h3 class="font-bold font-display text-neutral-text text-base">
+                WhatsApp
+              </h3>
+              <p class="text-neutral-muted text-sm mt-1 font-mono">
+                0857-3200-3774
+              </p>
+            </div>
+          </a>
+
+          <!-- Email -->
+          <a
+            href="mailto:peserta.31147@ppg.belajar.id"
+            class="bento-card mechanical-hover bg-white p-6 flex flex-col items-center text-center gap-3 gs-reveal group cursor-pointer delay-100"
+          >
+            <div
+              class="w-14 h-14 bg-white border-2 border-neutral-border rounded-2xl flex items-center justify-center text-3xl text-neutral-muted group-hover:text-teal-main group-hover:border-teal-main transition-all shadow-sm group-hover:scale-110"
+            >
+              <i class="far fa-envelope"></i>
+            </div>
+            <div>
+              <h3 class="font-bold font-display text-neutral-text text-base">
+                Email Akademik
+              </h3>
+              <p class="text-neutral-muted text-xs mt-1 font-mono break-all">
+                peserta.31147@ppg.belajar.id
+              </p>
+            </div>
+          </a>
+
+          <!-- LinkedIn -->
+          <a
+            href="#"
+            class="bento-card mechanical-hover bg-white p-6 flex flex-col items-center text-center gap-3 gs-reveal group cursor-pointer delay-200"
+          >
+            <div
+              class="w-14 h-14 bg-white border-2 border-neutral-border rounded-2xl flex items-center justify-center text-3xl text-neutral-muted group-hover:text-teal-main group-hover:border-teal-main transition-all shadow-sm group-hover:scale-110"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </div>
+            <div>
+              <h3 class="font-bold font-display text-neutral-text text-base">
+                LinkedIn
+              </h3>
+              <p class="text-neutral-muted text-sm mt-1 font-medium">
+                Fatasya Aulia Suyono
+              </p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+      class="w-full border-t-2 border-neutral-border bg-white mt-auto z-10 relative"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center text-center gap-2"
+      >
+        <div class="text-teal-main text-xl mb-2 animate-float-slow flex gap-3">
+          <i class="fas fa-graduation-cap"></i>
+          <i class="fas fa-code text-aqua-main"></i>
+          <i class="fas fa-laptop text-neutral-muted"></i>
+        </div>
+        <p
+          class="text-xs font-bold text-neutral-muted font-display tracking-widest uppercase"
+        >
+          &copy; 2026 FATASYA AULIA SUYONO. E-PORTOFOLIO PPG.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ================= SCRIPTS & ANIMATIONS ================= -->
+    <script>
+      // 1. Mobile Menu Toggle
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        const icon = btn.querySelector("i");
+        if (menu.classList.contains("hidden")) {
+          icon.classList.replace("fa-times", "fa-bars");
+        } else {
+          icon.classList.replace("fa-bars", "fa-times");
+        }
+      });
+
+      // 2. Setup GSAP Animations
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (!prefersReducedMotion) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Page Load Animations
+        const tl = gsap.timeline();
+
+        // Navbar slide down
+        tl.from("#navbar", {
+          y: -50,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+
+        // Hero Items Stagger Reveal
+        tl.from(
+          ".gs-hero-item",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.2,
+            ease: "power2.out",
+          },
+          "-=0.3",
+        );
+
+        // Scroll Animations for Sections
+        const revealElements = document.querySelectorAll(".gs-reveal");
+
+        revealElements.forEach((el, index) => {
+          gsap.from(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.5,
+            delay: el.classList.contains("delay-100")
+              ? 0.1
+              : el.classList.contains("delay-200")
+                ? 0.2
+                : 0,
+            ease: "power2.out",
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

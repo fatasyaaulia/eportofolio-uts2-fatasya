@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Lembar Kerja 3 - Fatasya Aulia Suyono | E-Portofolio PPG</title>
+
+    <!-- Accessibility / SEO -->
+    <meta
+      name="description"
+      content="Lembar Kerja 3 E-Portofolio PPG Prajabatan Fatasya Aulia Suyono."
+    />
+
+    <!-- Google Fonts: Outfit (Heading/Modern Tech) & Inter (Body/Clean Editorial) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome for Minimalist Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Design System Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Outfit", "sans-serif"],
+              body: ["Inter", "sans-serif"],
+              mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+            },
+            colors: {
+              teal: {
+                main: "#005F73",
+                soft: "#E0F0F2",
+              },
+              aqua: {
+                main: "#94D2BD",
+                soft: "#E8F5F1",
+              },
+              neutral: {
+                bg: "#F0F4F8",
+                card: "#FFFFFF",
+                text: "#264653",
+                muted: "#5C7C89",
+                border: "#D1E1E6",
+              },
+              accent: {
+                peach: "#FFF9F5",
+              },
+            },
+            boxShadow: {
+              bento: "6px 6px 0px rgba(0, 95, 115, 0.08)",
+              badge: "3px 3px 0px rgba(0, 95, 115, 0.08)",
+            },
+            animation: {
+              scroll: "scroll 30s linear infinite",
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              scroll: {
+                "0%": { transform: "translateX(0)" },
+                "100%": { transform: "translateX(calc(-50% - 12px))" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Base & Background */
+      body {
+        background-color: #f0f4f8;
+        color: #264653;
+        overflow-x: hidden;
+      }
+
+      /* Subtle Educational/Tech Grid Background */
+      .bg-tech-grid {
+        background-image: radial-gradient(#94d2bd 1.5px, transparent 1.5px);
+        background-size: 32px 32px;
+        opacity: 0.25;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      ::selection {
+        background-color: #94d2bd;
+        color: #005f73;
+      }
+
+      /* Bento Grid Card Styling */
+      .bento-card {
+        background-color: #ffffff;
+        border: 2px solid #d1e1e6;
+        border-radius: 1.5rem;
+        box-shadow: 6px 6px 0px rgba(0, 95, 115, 0.06);
+        transition:
+          transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.2s ease;
+      }
+
+      /* Mechanical Hover Effect */
+      .mechanical-hover:hover {
+        transform: translate(4px, 4px);
+        box-shadow: 2px 2px 0px rgba(0, 95, 115, 0.12);
+        border-color: #94d2bd;
+      }
+
+      /* Iframe Wrapper - Diubah agar flex-1 bisa memelarnya sempurna mengikuti tinggi teks */
+      .iframe-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 1rem;
+        overflow: hidden;
+        background: #f0f4f8;
+        border: 2px solid #d1e1e6;
+      }
+      .iframe-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      /* Continuous scroll for Gallery */
+      .carousel-track:hover {
+        animation-play-state: paused;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Navbar active state */
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #005f73;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* FOOLPROOF SCROLL REVEAL (CSS Murni) */
+      .reveal-css {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-css.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .delay-100 {
+        transition-delay: 100ms;
+      }
+      .delay-200 {
+        transition-delay: 200ms;
+      }
+
+      /* Floating animations */
+      .float-slow {
+        animation: float-anim 6s ease-in-out infinite;
+      }
+      @keyframes float-anim {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(3deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="font-body antialiased">
+    <!-- Background Pattern -->
+    <div class="bg-tech-grid"></div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav
+      class="fixed w-full z-50 top-4 px-4 md:px-8 transition-all duration-300"
+      id="navbar"
+    >
+      <div
+        class="max-w-6xl mx-auto bg-white/90 backdrop-blur-md border-2 border-neutral-border rounded-2xl px-5 md:px-6 py-3 flex justify-between items-center shadow-badge"
+      >
+        <div class="flex items-center gap-3 shrink-0 cursor-pointer">
+          <div
+            class="w-10 h-10 bg-teal-main text-white rounded-xl flex items-center justify-center font-display font-bold text-xl border-2 border-teal-main"
+          >
+            F<span class="text-aqua-main">.</span>
+          </div>
+          <div class="hidden sm:block">
+            <h1
+              class="font-bold text-neutral-text text-base leading-none tracking-tight font-display"
+            >
+              Fatasya.
+            </h1>
+            <p
+              class="text-[9px] text-neutral-muted font-bold uppercase tracking-widest mt-0.5"
+            >
+              E-Portofolio
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-muted"
+        >
+          <a href="index.html" class="nav-link hover:text-teal-main">Beranda</a>
+          <a href="profil.html" class="nav-link hover:text-teal-main">Profil</a>
+          <a
+            href="lembar-kerja-3.html"
+            class="nav-link active text-teal-main font-semibold"
+            >Lembar Kerja 3</a
+          >
+          <a href="uts.html" class="nav-link hover:text-teal-main">UTS</a>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <a
+            href="index.html#kontak"
+            class="hidden md:flex bg-teal-main text-white border-2 border-teal-main shadow-[4px_4px_0px_rgba(0,95,115,0.2)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,95,115,0.3)] transition-all px-5 py-2.5 rounded-xl text-sm font-bold items-center gap-2 font-display"
+          >
+            Hubungi Saya <i class="fab fa-whatsapp text-aqua-main"></i>
+          </a>
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden w-10 h-10 bg-aqua-soft text-teal-main rounded-xl border-2 border-aqua-main flex items-center justify-center focus:outline-none"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden absolute top-20 left-4 right-4 bg-white border-2 border-neutral-border shadow-bento rounded-2xl flex flex-col p-4 space-y-2 font-medium z-40"
+      >
+        <a
+          href="index.html"
+          class="block w-full text-neutral-text hover:bg-neutral-bg p-3 rounded-xl"
+          >Beranda</a
+        >
+        <a
+          href="profil.html"
+          class="block w-full text-neutral-text hover:bg-neutral-bg p-3 rounded-xl"
+          >Profil</a
+        >
+        <a
+          href="lembar-kerja-3.html"
+          class="block w-full text-teal-main bg-teal-soft p-3 rounded-xl font-bold font-display"
+          >Lembar Kerja 3</a
+        >
+        <a
+          href="uts.html"
+          class="block w-full text-neutral-text hover:bg-neutral-bg p-3 rounded-xl"
+          >UTS</a
+        >
+      </div>
+    </nav>
+
+    <main
+      class="w-full max-w-6xl mx-auto pt-36 pb-20 px-5 md:px-8 space-y-12 md:space-y-16"
+    >
+      <!-- ================= HEADER SECTION ================= -->
+      <section class="text-center reveal-css relative z-10">
+        <div
+          class="absolute left-1/2 -top-10 -translate-x-1/2 float-slow opacity-80"
+        >
+          <div
+            class="bg-white border-2 border-aqua-main px-3 py-1 rounded-full shadow-badge flex items-center gap-2"
+          >
+            <span
+              class="w-2 h-2 bg-teal-main rounded-full animate-pulse-slow"
+            ></span>
+            <span class="text-[10px] font-bold text-teal-main font-mono"
+              >Lembar Kerja 3/PPG</span
+            >
+          </div>
+        </div>
+
+        <h1
+          class="text-3xl md:text-5xl font-extrabold text-neutral-text font-display leading-tight tracking-tight mt-6"
+        >
+          Lembar Kerja 3
+        </h1>
+        <p
+          class="text-neutral-muted mt-4 max-w-2xl mx-auto text-sm md:text-base"
+        >
+          Refleksi dan analisis komprehensif terhadap produk perencanaan,
+          pelaksanaan, serta instrumen pembelajaran Informatika kelas VII.
+        </p>
+      </section>
+
+      <!-- ================= TEKS ANALISIS BERSAMA PREVIEW (GRID SEJAJAR) ================= -->
+      <section class="space-y-10">
+        <!-- 1. Analisis Rancangan (Teks Kiri, Preview Kanan) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch reveal-css delay-100"
+        >
+          <div
+            class="lg:col-span-7 bento-card p-6 md:p-8 flex flex-col justify-center h-full mechanical-hover bg-white"
+          >
+            <div
+              class="flex items-center gap-3 mb-4 border-b-2 border-neutral-border pb-4 shrink-0"
+            >
+              <div
+                class="w-10 h-10 bg-aqua-soft text-teal-main rounded-lg flex items-center justify-center text-lg"
+              >
+                <i class="fas fa-pen-ruler"></i>
+              </div>
+              <h2 class="text-xl font-bold text-neutral-text font-display">
+                Analisis Produk Rancangan/Perencanaan Pembelajaran
+              </h2>
+            </div>
+            <div
+              class="space-y-4 text-sm md:text-base text-neutral-muted leading-relaxed text-justify"
+            >
+              <p>
+                Rancangan pembelajaran yang digunakan adalah pembelajaran
+                Informatika kelas VII dengan materi Berpikir Komputasional dan
+                Dekomposisi. Pembelajaran dirancang untuk 3 JP atau 120 menit
+                dengan menggunakan model Problem Based Learning (PBL). Kegiatan
+                pembelajaran juga menggunakan tanya jawab, diskusi, demonstrasi,
+                latihan individu, presentasi, dan refleksi. Media yang disiapkan
+                berupa PPT, LKPD, papan tulis, dan perangkat digital jika
+                tersedia.
+              </p>
+              <p>
+                Menurut saya, rancangan ini sudah cukup jelas karena tujuan
+                pembelajarannya sesuai dengan kegiatan yang dilakukan. Siswa
+                tidak hanya diminta memahami pengertian berpikir komputasional,
+                tetapi juga mengenal empat fondasinya, memahami dekomposisi, dan
+                mencoba menggunakannya untuk menyelesaikan masalah sehari-hari.
+              </p>
+              <p>
+                Kegiatan pembelajaran juga disusun secara bertahap. Pada awal
+                pembelajaran, siswa diberi pertanyaan sederhana tentang cara
+                menyiapkan tas sekolah agar tidak ada barang yang tertinggal.
+                Setelah itu, siswa diarahkan pada masalah yang lebih besar,
+                yaitu menyelenggarakan acara perpisahan. Dari masalah tersebut,
+                siswa diajak melihat bahwa satu masalah besar dapat dibagi
+                menjadi beberapa bagian yang lebih kecil. Setelah memahami
+                contoh, siswa mencoba sendiri melalui diskusi dan kemudian
+                mengerjakan LKPD secara individu.
+              </p>
+              <p>
+                Hal yang menurut saya cukup baik dalam perencanaan ini adalah
+                adanya perhatian terhadap perbedaan kemampuan siswa. Modul
+                menyebutkan bahwa ada siswa yang dapat langsung memahami materi,
+                tetapi ada juga yang masih membutuhkan contoh dan pertanyaan
+                pemandu. Karena itu, guru menyiapkan contoh yang dekat dengan
+                kehidupan siswa, tampilan visual, dan bantuan secara bertahap.
+              </p>
+              <p>
+                Dari perencanaan tersebut, pembelajaran sudah diarahkan agar
+                siswa aktif berpikir dan mencoba sendiri, bukan hanya
+                mendengarkan penjelasan guru. Namun, banyaknya kegiatan dalam
+                waktu 120 menit perlu diperhatikan agar semua kegiatan, terutama
+                pengerjaan LKPD, penyampaian jawaban, dan refleksi, tetap
+                mendapat waktu yang cukup.
+              </p>
+            </div>
+          </div>
+
+          <!-- Preview Modul Ajar -->
+          <div
+            class="lg:col-span-5 bg-aqua-soft bento-card p-6 border-aqua-main mechanical-hover flex flex-col h-full"
+          >
+            <div class="flex items-center justify-between mb-4 shrink-0">
+              <h3 class="font-bold text-neutral-text font-display">
+                <i class="fas fa-file-alt text-teal-main mr-2"></i> Preview
+                Modul Ajar
+              </h3>
+            </div>
+            <div class="iframe-wrapper flex-1 min-h-[300px] w-full relative">
+              <iframe
+                src="https://drive.google.com/file/d/1cOEnQSPl8tbcLQaHef9Baf1zjBdpwbMy/preview"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Analisis Materi (Preview Kiri, Teks Kanan) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch reveal-css delay-100"
+        >
+          <!-- Preview Modul Ajar -->
+          <div
+            class="lg:col-span-5 bg-teal-soft bento-card p-6 border-neutral-border mechanical-hover flex flex-col h-full order-2 lg:order-1"
+          >
+            <div class="flex items-center justify-between mb-4 shrink-0">
+              <h3 class="font-bold text-neutral-text font-display">
+                <i class="fas fa-file-pdf text-teal-main mr-2"></i> Preview
+                Modul Ajar
+              </h3>
+            </div>
+            <div class="iframe-wrapper flex-1 min-h-[300px] w-full relative">
+              <iframe
+                src="https://drive.google.com/file/d/1cOEnQSPl8tbcLQaHef9Baf1zjBdpwbMy/preview"
+              ></iframe>
+            </div>
+          </div>
+
+          <div
+            class="lg:col-span-7 bento-card p-6 md:p-8 flex flex-col justify-center h-full mechanical-hover bg-white order-1 lg:order-2"
+          >
+            <div
+              class="flex items-center gap-3 mb-4 border-b-2 border-neutral-border pb-4 shrink-0"
+            >
+              <div
+                class="w-10 h-10 bg-teal-soft text-teal-main rounded-lg flex items-center justify-center text-lg"
+              >
+                <i class="fas fa-book-open"></i>
+              </div>
+              <h2 class="text-xl font-bold text-neutral-text font-display">
+                Analisis Materi Pembelajaran
+              </h2>
+            </div>
+            <div
+              class="space-y-4 text-sm md:text-base text-neutral-muted leading-relaxed text-justify"
+            >
+              <p>
+                Materi pembelajaran membahas Berpikir Komputasional dengan fokus
+                pada Dekomposisi. Materi menjelaskan bahwa berpikir
+                komputasional adalah cara berpikir secara sistematis untuk
+                memahami masalah dan mencari solusi. Empat fondasinya adalah
+                dekomposisi, pengenalan pola, abstraksi, dan algoritma. Dalam
+                pembelajaran ini, bagian yang paling ditekankan adalah
+                dekomposisi, yaitu memecah masalah besar menjadi beberapa bagian
+                kecil agar lebih mudah dipahami dan dikerjakan.
+              </p>
+              <p>
+                Materi yang disusun cukup dekat dengan kehidupan siswa.
+                Contohnya adalah menyelenggarakan acara perpisahan, mengatur
+                anggaran belanja, mengatur waktu membersihkan rumah, mencari
+                penyebab sepeda terasa berat, mengelompokkan buku, memasak,
+                memprogram robot, membagi tugas membuat video, dan menyiapkan
+                perlengkapan kemah.
+              </p>
+              <p>
+                Menurut saya, bagian yang bagus dari materi ini adalah siswa
+                tidak hanya diberi pengertian, tetapi langsung diberi contoh.
+                Misalnya, masalah “menyelenggarakan acara perpisahan” dibagi
+                menjadi bagian konsumsi, dekorasi dan tempat, susunan acara,
+                serta dokumentasi. Contoh seperti ini lebih mudah dipahami
+                karena dekat dengan kegiatan yang mungkin pernah mereka lihat
+                atau lakukan.
+              </p>
+              <p>
+                Materi juga sudah sesuai dengan LKPD. Sepuluh soal yang ada di
+                LKPD membahas contoh yang sama atau masih berhubungan langsung
+                dengan materi yang telah diberikan. Karena itu, siswa memiliki
+                bekal sebelum mengerjakan soal. LKPD juga tidak hanya meminta
+                hafalan, tetapi meminta siswa menggunakan cara berpikir
+                dekomposisi pada berbagai masalah.
+              </p>
+              <p>
+                Secara keseluruhan, materi sudah cukup sesuai dengan tujuan
+                pembelajaran. Materi dimulai dari pengertian, kemudian contoh,
+                lalu latihan. Hal ini membuat siswa lebih mudah mengikuti
+                pembelajaran dari awal sampai akhir.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Analisis Media (Teks Kiri, 2 Preview Kanan) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch reveal-css delay-100"
+        >
+          <div
+            class="lg:col-span-7 bento-card p-6 md:p-8 flex flex-col justify-center h-full mechanical-hover bg-white"
+          >
+            <div
+              class="flex items-center gap-3 mb-4 border-b-2 border-neutral-border pb-4 shrink-0"
+            >
+              <div
+                class="w-10 h-10 bg-aqua-soft text-teal-main rounded-lg flex items-center justify-center text-lg"
+              >
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <h2 class="text-xl font-bold text-neutral-text font-display">
+                Analisis Media Pembelajaran
+              </h2>
+            </div>
+            <div
+              class="space-y-4 text-sm md:text-base text-neutral-muted leading-relaxed text-justify"
+            >
+              <p>
+                Media yang digunakan dalam pembelajaran adalah PPT, LKPD, papan
+                tulis, dan perangkat digital atau proyektor. Media tersebut
+                sudah direncanakan sejak awal dalam modul ajar.
+              </p>
+              <p>
+                PPT digunakan untuk membantu menjelaskan materi melalui tulisan,
+                gambar, contoh, dan soal singkat. Isi PPT dimulai dari
+                pengertian berpikir komputasional, empat fondasinya, pengertian
+                dekomposisi, langkah melakukan dekomposisi, berbagai contoh,
+                latihan singkat, sampai kesimpulan dan refleksi.
+              </p>
+              <p>
+                Menurut saya, PPT cukup membantu karena materi yang dijelaskan
+                tidak hanya berupa tulisan. Ada juga contoh dan pembagian
+                masalah dalam bentuk yang lebih mudah dilihat. Hal ini juga
+                sesuai dengan asesmen awal yang menunjukkan bahwa siswa dapat
+                memiliki cara belajar yang berbeda, termasuk lebih mudah
+                memahami materi melalui gambar, video, atau diagram.
+              </p>
+              <p>
+                Selain PPT, LKPD menjadi media yang penting karena siswa
+                langsung menggunakannya untuk berlatih. LKPD berisi 10 soal
+                tentang dekomposisi yang dikerjakan secara individu. Soalnya
+                dibuat dengan contoh yang berbeda-beda sehingga siswa tidak
+                hanya belajar dari satu jenis masalah.
+              </p>
+              <p>
+                Jadi, PPT lebih banyak membantu saat menjelaskan materi,
+                sedangkan LKPD membantu siswa saat mencoba dan mengukur
+                pemahamannya. Menurut saya, kedua media tersebut sudah saling
+                mendukung.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2 Preview (PPT & LKPD) bertumpuk vertikal secara fleksibel -->
+          <div
+            class="lg:col-span-5 bg-neutral-bg bento-card p-6 flex flex-col gap-5 h-full mechanical-hover border-neutral-border"
+          >
+            <div class="flex-1 flex flex-col h-full min-h-[180px]">
+              <h3 class="font-bold text-neutral-text text-sm font-display mb-2">
+                <i class="fas fa-file-powerpoint text-teal-main mr-2"></i>
+                Preview PPT
+              </h3>
+              <div class="iframe-wrapper flex-1 w-full relative">
+                <iframe
+                  src="https://docs.google.com/presentation/d/1iWNR8K9YliZwvbqZKGvfu78aPOpdVVZn/edit?usp=drive_link&ouid=112930865235523823628&rtpof=true&sd=true/preview"
+                ></iframe>
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col h-full min-h-[180px]">
+              <h3 class="font-bold text-neutral-text text-sm font-display mb-2">
+                <i class="fas fa-edit text-teal-main mr-2"></i> Preview LKPD
+              </h3>
+              <div class="iframe-wrapper flex-1 w-full relative">
+                <iframe
+                  src="https://drive.google.com/file/d/12L8bq6qBA-0sjJ5b8xIl7PILBAaefY8a/preview"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Analisis Video (Preview Kiri, Teks Kanan) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch reveal-css delay-100"
+        >
+          <!-- Preview Video -->
+          <div
+            class="lg:col-span-5 bg-accent-peach bento-card p-6 border-neutral-border mechanical-hover flex flex-col h-full order-2 lg:order-1"
+          >
+            <div class="flex items-center justify-between mb-4 shrink-0">
+              <h3 class="font-bold text-neutral-text font-display">
+                <i class="fas fa-play-circle text-orange-500 mr-2"></i> Preview
+                Video
+              </h3>
+            </div>
+            <div
+              class="iframe-wrapper flex-1 min-h-[300px] w-full relative bg-neutral-text border-orange-200"
+            >
+              <iframe
+                src="https://drive.google.com/file/d/1ix1wnSwnjLTlTNItGYgk5-WCqjlgKwzY/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+
+          <div
+            class="lg:col-span-7 bento-card p-6 md:p-8 flex flex-col justify-center h-full mechanical-hover bg-white order-1 lg:order-2"
+          >
+            <div
+              class="flex items-center gap-3 mb-4 border-b-2 border-neutral-border pb-4 shrink-0"
+            >
+              <div
+                class="w-10 h-10 bg-teal-soft text-teal-main rounded-lg flex items-center justify-center text-lg"
+              >
+                <i class="fas fa-video"></i>
+              </div>
+              <h2 class="text-xl font-bold text-neutral-text font-display">
+                Analisis Video Pelaksanaan Praktik Mengajar Mandiri
+              </h2>
+            </div>
+            <div
+              class="space-y-4 text-sm md:text-base text-neutral-muted leading-relaxed text-justify"
+            >
+              <p>
+                Untuk bagian ini, video pelaksanaan praktik mengajar mandiri
+                belum tersedia dalam dokumen yang saya terima. Karena itu, saya
+                belum bisa menilai pelaksanaan yang sebenarnya.
+              </p>
+              <p>
+                Hal yang bisa digunakan sebagai dasar analisis adalah rencana
+                yang ada di modul. Dalam rencana tersebut, guru seharusnya
+                memulai pembelajaran dengan apersepsi, memberikan masalah yang
+                dekat dengan siswa, menjelaskan materi, memberikan contoh,
+                membimbing siswa, mengarahkan pengerjaan LKPD, memberikan
+                kesempatan kepada siswa untuk menyampaikan jawaban, lalu
+                melakukan refleksi.
+              </p>
+              <p>
+                Jadi, untuk mengetahui apakah pelaksanaan di video sudah sesuai
+                dengan rencana, saya perlu melihat videonya. Tanpa video, saya
+                tidak ingin membuat penilaian yang sebenarnya belum didukung
+                oleh bukti.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Kegiatan Nonmengajar (Teks Kiri, 2 Preview Foto Kanan) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch reveal-css delay-100"
+        >
+          <div
+            class="lg:col-span-7 bento-card p-6 md:p-8 flex flex-col justify-center h-full mechanical-hover bg-white"
+          >
+            <div
+              class="flex items-center gap-3 mb-4 border-b-2 border-neutral-border pb-4 shrink-0"
+            >
+              <div
+                class="w-10 h-10 bg-aqua-soft text-teal-main rounded-lg flex items-center justify-center text-lg"
+              >
+                <i class="fas fa-hands-helping"></i>
+              </div>
+              <h2 class="text-xl font-bold text-neutral-text font-display">
+                Analisis Kegiatan Nonmengajar
+              </h2>
+            </div>
+            <div
+              class="space-y-4 text-sm md:text-base text-neutral-muted leading-relaxed text-justify"
+            >
+              <p>
+                Kegiatan nonmengajar yang saya lakukan adalah mendampingi
+                pelaksanaan sholat dhuha pada pagi hari. Dalam kegiatan ini,
+                saya ikut mendampingi siswa selama kegiatan berlangsung dan
+                membantu menjaga agar siswa tetap tertib serta mengikuti
+                kegiatan dengan baik.
+              </p>
+              <p>
+                Kegiatan tersebut memberikan pengalaman bagi saya untuk
+                berinteraksi dengan siswa dalam situasi di luar pembelajaran di
+                kelas. Saya dapat melihat bahwa mendampingi siswa tidak hanya
+                dilakukan ketika proses belajar mengajar berlangsung, tetapi
+                juga dalam kegiatan rutin sekolah. Dari kegiatan ini, saya
+                belajar untuk lebih memperhatikan sikap siswa, mengarahkan
+                mereka ketika diperlukan, serta menjaga suasana agar kegiatan
+                berjalan dengan tertib.
+              </p>
+              <p>
+                Menurut saya, kegiatan mendampingi sholat dhuha juga membantu
+                saya memahami peran guru secara lebih luas. Seorang guru tidak
+                hanya bertugas menyampaikan materi, tetapi juga mendampingi
+                siswa dalam kegiatan sekolah dan membantu membentuk kebiasaan
+                yang baik. Pengalaman ini menjadi bagian dari proses saya dalam
+                belajar menyesuaikan diri dengan lingkungan sekolah dan
+                menjalankan tugas sebagai calon guru.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2 Preview Foto bertumpuk -->
+          <div
+            class="lg:col-span-5 bg-aqua-soft bento-card p-6 border-aqua-main mechanical-hover flex flex-col gap-4 h-full"
+          >
+            <h3
+              class="font-bold text-neutral-text text-sm font-display shrink-0"
+            >
+              <i class="fas fa-camera text-teal-main mr-2"></i> Preview Foto
+              Kegiatan
+            </h3>
+            <div
+              class="flex-1 w-full relative min-h-[150px] rounded-xl overflow-hidden border-2 border-neutral-border shadow-sm group"
+            >
+              <img
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                src="https://drive.google.com/thumbnail?id=1gIFZvI6jSeowbxsQdf7n7XouCipmXIXt&sz=w800"
+                alt="Foto Kegiatan 1"
+              />
+            </div>
+            <div
+              class="flex-1 w-full relative min-h-[150px] rounded-xl overflow-hidden border-2 border-neutral-border shadow-sm group"
+            >
+              <img
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                src="https://drive.google.com/thumbnail?id=18ilbfeyGz1hdrYoBl9OevUaz8Lw2qOtp&sz=w800"
+                alt="Foto Kegiatan 2"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Instrumen Penilaian (Preview Kiri, Teks Kanan) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch reveal-css delay-100"
+        >
+          <!-- Preview Lembar Asesmen -->
+          <div
+            class="lg:col-span-5 bg-teal-soft bento-card p-6 border-neutral-border mechanical-hover flex flex-col h-full order-2 lg:order-1"
+          >
+            <div class="flex items-center justify-between mb-4 shrink-0">
+              <h3 class="font-bold text-neutral-text font-display">
+                <i class="fas fa-clipboard-check text-teal-main mr-2"></i>
+                Preview Lembar Asesmen
+              </h3>
+            </div>
+            <div class="iframe-wrapper flex-1 min-h-[300px] w-full relative">
+              <iframe
+                src="https://drive.google.com/file/d/1hQtY_idydAa1fT6VxVDFeMsQ436ofgPR/preview"
+              ></iframe>
+            </div>
+          </div>
+
+          <div
+            class="lg:col-span-7 bento-card p-6 md:p-8 flex flex-col justify-center h-full mechanical-hover bg-white order-1 lg:order-2"
+          >
+            <div
+              class="flex items-center gap-3 mb-4 border-b-2 border-neutral-border pb-4 shrink-0"
+            >
+              <div
+                class="w-10 h-10 bg-teal-soft text-teal-main rounded-lg flex items-center justify-center text-lg"
+              >
+                <i class="fas fa-tasks"></i>
+              </div>
+              <h2 class="text-xl font-bold text-neutral-text font-display">
+                Analisis Instrumen Penilaian
+              </h2>
+            </div>
+            <div
+              class="space-y-4 text-sm md:text-base text-neutral-muted leading-relaxed text-justify"
+            >
+              <p>
+                Instrumen penilaian yang digunakan terdiri dari asesmen awal,
+                penilaian selama proses pembelajaran, dan penilaian hasil.
+              </p>
+              <p>
+                Pada awal pembelajaran digunakan asesmen awal peserta didik.
+                Asesmen ini berisi pertanyaan tentang cara belajar siswa,
+                kondisi belajar, minat terhadap komputer, keberanian bertanya,
+                kerja sama, dan ketekunan. Selain itu, terdapat beberapa
+                pertanyaan untuk mengetahui pemahaman awal siswa tentang
+                berpikir komputasional dan pengalaman bekerja dalam kelompok.
+              </p>
+              <p>
+                Menurut saya, asesmen awal ini berguna karena guru bisa
+                mengetahui kondisi siswa sebelum materi diberikan. Dari jawaban
+                siswa, guru dapat melihat apakah siswa sudah mengenal berpikir
+                komputasional atau masih membutuhkan penjelasan dari dasar. Hal
+                ini juga membantu guru menentukan apakah siswa perlu lebih
+                banyak contoh atau bantuan saat belajar.
+              </p>
+              <p>
+                Selama pembelajaran, penilaian dilakukan melalui pengamatan
+                terhadap cara siswa menjelaskan bagian-bagian masalah,
+                pengecekan jawaban pada LKPD, dan refleksi siswa setelah
+                mengerjakan tugas. Penilaian seperti ini cukup sesuai dengan
+                materi karena yang dilihat bukan hanya jawaban benar atau salah,
+                tetapi juga bagaimana siswa memecah sebuah masalah.
+              </p>
+              <p>
+                Untuk penilaian hasil, LKPD Dekomposisi menjadi tugas utama. Ada
+                empat hal yang dinilai, yaitu pemahaman konsep, logika dalam
+                memecah masalah, ketepatan jawaban, serta kemampuan
+                berkomunikasi dan mengerjakan secara mandiri.
+              </p>
+              <p>
+                Nilainya dibagi menjadi empat kategori, yaitu Sangat Baik
+                (86–100), Baik (71–85), Cukup (56–70), dan Perlu Bimbingan di
+                bawah 56. Rubriknya juga menjelaskan seperti apa jawaban yang
+                baik, misalnya siswa mampu menjelaskan dekomposisi dengan benar,
+                membagi masalah dengan logis, menjawab soal dengan tepat, dan
+                menjelaskan jawabannya dengan jelas.
+              </p>
+              <p>
+                Bobot penilaiannya adalah 25% untuk proses dan partisipasi, 50%
+                untuk LKPD, dan 25% untuk refleksi dan komunikasi.
+              </p>
+              <p>
+                Menurut saya, instrumen penilaian ini sudah cukup sesuai dengan
+                pembelajaran yang dilakukan. Penilaian tidak hanya melihat hasil
+                akhir, tetapi juga melihat proses siswa selama belajar. Hal ini
+                penting karena tujuan pembelajaran bukan sekadar siswa
+                mengetahui arti dekomposisi, tetapi mampu menggunakannya ketika
+                menghadapi masalah. Modul juga menegaskan bahwa yang
+                diperhatikan adalah proses berpikir dan kemampuan menerapkan
+                dekomposisi, bukan hanya jawaban akhir.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Kesimpulan -->
+        <div
+          class="bento-card p-6 md:p-8 bg-teal-main text-white reveal-css border-teal-main relative overflow-hidden"
+        >
+          <div
+            class="absolute -right-10 -bottom-10 opacity-10 text-[150px] pointer-events-none"
+          >
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="relative z-10">
+            <div
+              class="flex items-center gap-3 mb-4 border-b border-white/20 pb-4"
+            >
+              <div
+                class="w-10 h-10 bg-white/10 text-aqua-main rounded-lg flex items-center justify-center text-lg"
+              >
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h2 class="text-xl font-bold font-display">Kesimpulan</h2>
+            </div>
+            <div
+              class="space-y-4 text-sm md:text-base leading-relaxed text-justify text-white/90"
+            >
+              <p>
+                Dari beberapa dokumen yang tersedia, rancangan pembelajaran,
+                materi, media, LKPD, dan instrumen penilaian sudah saling
+                berhubungan. Materi yang diberikan di PPT sesuai dengan kegiatan
+                pada LKPD, sedangkan penilaiannya juga diarahkan untuk melihat
+                pemahaman dan kemampuan siswa dalam memecah masalah.
+              </p>
+              <p>
+                Bagian yang belum bisa dianalisis adalah pelaksanaan mengajar
+                berdasarkan video karena videonya belum tersedia. Jadi, saya
+                tidak membuat penilaian tentang apa yang terjadi di kelas
+                berdasarkan perkiraan. Untuk kegiatan nonmengajar, analisis
+                didasarkan pada informasi bahwa kegiatan yang dilakukan adalah
+                mendampingi sholat dhuha pada pagi hari.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DOKUMENTASI (CAROUSEL INFINITE) ================= -->
+      <section
+        class="bento-card p-8 md:p-10 reveal-css overflow-hidden mt-8 bg-white border-neutral-border"
+      >
+        <div class="text-center mb-8">
+          <span
+            class="bg-aqua-soft text-teal-main font-bold px-4 py-2 rounded-full text-[10px] uppercase tracking-widest border border-aqua-main shadow-sm inline-flex items-center gap-2 font-display"
+          >
+            <i class="fas fa-images"></i> Dokumentasi Foto
+          </span>
+          <h2
+            class="text-2xl md:text-3xl font-display font-bold text-neutral-text mt-4"
+          >
+            Dokumentasi Kegiatan
+          </h2>
+        </div>
+
+        <div
+          class="relative w-full overflow-hidden no-scrollbar py-4"
+          id="carouselWrapper"
+        >
+          <div
+            class="flex w-max gap-6 animate-scroll carousel-track"
+            id="carouselTrack"
+          >
+            <!-- Item 1 -->
+            <div
+              class="w-72 flex-shrink-0 bg-white border-2 border-neutral-border rounded-2xl p-4 shadow-sm group mechanical-hover"
+            >
+              <div
+                class="w-full h-44 bg-neutral-bg rounded-xl overflow-hidden relative mb-4 border border-neutral-border"
+              >
+                <img
+                  src="https://drive.google.com/thumbnail?id=1mcUOT6qztBqmPYwH3XjlZQsyavc4emLs&sz=w800"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  alt="Penyerahan PPL"
+                />
+              </div>
+              <div class="text-center">
+                <h4
+                  class="font-bold text-sm text-neutral-text mb-1 font-display"
+                >
+                  Penyerahan PPL
+                </h4>
+                <span
+                  class="text-[10px] font-bold text-teal-main bg-aqua-soft px-3 py-1 rounded-full font-display"
+                  >Koordinasi</span
+                >
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div
+              class="w-72 flex-shrink-0 bg-white border-2 border-neutral-border rounded-2xl p-4 shadow-sm group mechanical-hover"
+            >
+              <div
+                class="w-full h-44 bg-neutral-bg rounded-xl overflow-hidden relative mb-4 border border-neutral-border"
+              >
+                <img
+                  src="https://drive.google.com/thumbnail?id=1Qksmm-r78zp52c2YDSqt0YJDFJmp7O4Z&sz=w800"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  alt="Supervisi"
+                />
+              </div>
+              <div class="text-center">
+                <h4
+                  class="font-bold text-sm text-neutral-text mb-1 font-display"
+                >
+                  Supervisi
+                </h4>
+                <span
+                  class="text-[10px] font-bold text-teal-main bg-aqua-soft px-3 py-1 rounded-full font-display"
+                  >Observasi</span
+                >
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div
+              class="w-72 flex-shrink-0 bg-white border-2 border-neutral-border rounded-2xl p-4 shadow-sm group mechanical-hover"
+            >
+              <div
+                class="w-full h-44 bg-neutral-bg rounded-xl overflow-hidden relative mb-4 border border-neutral-border"
+              >
+                <img
+                  src="https://drive.google.com/thumbnail?id=1K2W97dGWZfRx5PWiKzWaPImkkMLA7wh6&sz=w800"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  alt="Praktik Mengajar"
+                />
+              </div>
+              <div class="text-center">
+                <h4
+                  class="font-bold text-sm text-neutral-text mb-1 font-display"
+                >
+                  Praktik Mengajar
+                </h4>
+                <span
+                  class="text-[10px] font-bold text-teal-main bg-aqua-soft px-3 py-1 rounded-full font-display"
+                  >Praktik</span
+                >
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div
+              class="w-72 flex-shrink-0 bg-white border-2 border-neutral-border rounded-2xl p-4 shadow-sm group mechanical-hover"
+            >
+              <div
+                class="w-full h-44 bg-neutral-bg rounded-xl overflow-hidden relative mb-4 border border-neutral-border"
+              >
+                <img
+                  src="https://drive.google.com/thumbnail?id=1t6jNsYLoXdACKOhJhyWkp0vSVr1TR7FS&sz=w800"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  alt="Kegiatan Non Mengajar"
+                />
+              </div>
+              <div class="text-center">
+                <h4
+                  class="font-bold text-sm text-neutral-text mb-1 font-display"
+                >
+                  Kegiatan Non Mengajar
+                </h4>
+                <span
+                  class="text-[10px] font-bold text-teal-main bg-aqua-soft px-3 py-1 rounded-full font-display"
+                  >Kegiatan</span
+                >
+              </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div
+              class="w-72 flex-shrink-0 bg-white border-2 border-neutral-border rounded-2xl p-4 shadow-sm group mechanical-hover"
+            >
+              <div
+                class="w-full h-44 bg-neutral-bg rounded-xl overflow-hidden relative mb-4 border border-neutral-border"
+              >
+                <img
+                  src="https://drive.google.com/thumbnail?id=1gVgwFLP3QrT1ybNy8KTJCqzvM5zxFzgk&sz=w800"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  alt="Asistensi Mengajar"
+                />
+              </div>
+              <div class="text-center">
+                <h4
+                  class="font-bold text-sm text-neutral-text mb-1 font-display"
+                >
+                  Asistensi Mengajar
+                </h4>
+                <span
+                  class="text-[10px] font-bold text-white bg-teal-main px-3 py-1 rounded-full font-display"
+                  >Pendampingan</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+      class="w-full border-t-2 border-neutral-border bg-white mt-auto z-10 relative"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center text-center gap-2"
+      >
+        <div class="text-teal-main text-xl mb-2 float-slow flex gap-3">
+          <i class="fas fa-graduation-cap"></i>
+          <i class="fas fa-code text-aqua-main"></i>
+          <i class="fas fa-laptop text-neutral-muted"></i>
+        </div>
+        <p
+          class="text-xs font-bold text-neutral-muted font-display tracking-widest uppercase"
+        >
+          &copy; 2026 FATASYA AULIA SUYONO. E-PORTOFOLIO PPG.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+      // 1. Mobile Menu Logic
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        const icon = btn.querySelector("i");
+        if (menu.classList.contains("hidden")) {
+          icon.classList.replace("fa-times", "fa-bars");
+        } else {
+          icon.classList.replace("fa-bars", "fa-times");
+        }
+      });
+
+      // 2. Infinite Carousel Clone Logic
+      const track = document.getElementById("carouselTrack");
+      const items = [...track.children];
+      items.forEach((item) => {
+        const clone = item.cloneNode(true);
+        track.appendChild(clone);
+      });
+
+      // 3. FOOLPROOF SCROLL REVEAL (CSS Murni)
+      document.addEventListener("DOMContentLoaded", function () {
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        if (!prefersReducedMotion) {
+          const revealElements = document.querySelectorAll(".reveal-css");
+          const revealOptions = {
+            root: null,
+            rootMargin: "0px 0px -30px 0px",
+            threshold: 0.1,
+          };
+
+          const revealObserver = new IntersectionObserver(function (
+            entries,
+            observer,
+          ) {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          }, revealOptions);
+
+          revealElements.forEach((el) => {
+            revealObserver.observe(el);
+          });
+
+          // Backup check for scroll restoration
+          setTimeout(() => {
+            revealElements.forEach((el) => {
+              const rect = el.getBoundingClientRect();
+              if (rect.top < window.innerHeight) {
+                el.classList.add("is-visible");
+              }
+            });
+          }, 100);
+        } else {
+          document
+            .querySelectorAll(".reveal-css")
+            .forEach((el) => el.classList.add("is-visible"));
+        }
+      });
+    </script>
+  </body>
+</html>

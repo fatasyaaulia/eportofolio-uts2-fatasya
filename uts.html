@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>UTS - Fatasya Aulia Suyono | E-Portofolio PPG</title>
+
+    <!-- Accessibility / SEO -->
+    <meta
+      name="description"
+      content="Dokumen UTS E-Portofolio PPG Prajabatan Fatasya Aulia Suyono."
+    />
+
+    <!-- Google Fonts: Outfit (Heading/Modern Tech) & Inter (Body/Clean Editorial) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome for Minimalist Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP for precise mechanical animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Design System Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Outfit", "sans-serif"],
+              body: ["Inter", "sans-serif"],
+              mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+            },
+            colors: {
+              teal: {
+                main: "#005F73", // Deep Teal
+                soft: "#E0F0F2", // Pale Teal
+              },
+              aqua: {
+                main: "#94D2BD", // Light Aqua
+                soft: "#E8F5F1", // Very Soft Aqua
+              },
+              neutral: {
+                bg: "#F0F4F8", // Soft Light Grey
+                card: "#FFFFFF", // White
+                text: "#264653", // Charcoal
+                muted: "#5C7C89", // Lighter Charcoal
+                border: "#D1E1E6", // Soft Border
+              },
+              accent: {
+                peach: "#FFF9F5", // Soft Peach
+                yellow: "#FEF9C3", // Soft Yellow for subtle highlights
+              },
+            },
+            boxShadow: {
+              bento: "6px 6px 0px rgba(0, 95, 115, 0.08)",
+              "bento-hover": "2px 2px 0px rgba(0, 95, 115, 0.15)",
+              badge: "3px 3px 0px rgba(0, 95, 115, 0.08)",
+              drive: "6px 6px 0px rgba(0, 95, 115, 0.2)",
+            },
+            animation: {
+              "float-slow": "float 6s ease-in-out infinite",
+              "float-medium": "float 4s ease-in-out infinite alternate",
+              "float-fast": "float 3s ease-in-out infinite",
+              "pulse-teal":
+                "pulseTeal 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+                "50%": { transform: "translateY(-12px) rotate(4deg)" },
+              },
+              pulseTeal: {
+                "0%, 100%": { opacity: 1 },
+                "50%": { opacity: 0.6 },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Base & Background */
+      body {
+        background-color: #f0f4f8;
+        color: #264653;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* Subtle Educational/Tech Grid Background */
+      .bg-tech-grid {
+        background-image: radial-gradient(#94d2bd 1.5px, transparent 1.5px);
+        background-size: 32px 32px;
+        opacity: 0.25;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      ::selection {
+        background-color: #94d2bd;
+        color: #005f73;
+      }
+
+      /* Bento Grid Card Styling */
+      .bento-card {
+        border: 2px solid #d1e1e6;
+        border-radius: 1.5rem;
+        box-shadow: 6px 6px 0px rgba(0, 95, 115, 0.06);
+        transition:
+          transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.2s ease;
+      }
+
+      /* Mechanical Hover Effect */
+      .mechanical-hover:hover {
+        transform: translate(4px, 4px);
+        box-shadow: 2px 2px 0px rgba(0, 95, 115, 0.12);
+        border-color: #94d2bd;
+      }
+
+      /* Iframe Wrapper - Dibuat fleksibel tanpa rasio paksa agar sejajar dengan teks */
+      .iframe-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 1rem;
+        overflow: hidden;
+        background: #e0f0f2;
+        border: 2px solid #d1e1e6;
+      }
+      .iframe-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      /* Navbar active state */
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #005f73;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* Icon Wrapper Bounce */
+      .bounce-on-hover:hover i {
+        animation: float 1s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body class="font-body antialiased">
+    <!-- Background Pattern -->
+    <div class="bg-tech-grid"></div>
+
+    <!-- Floating Decorative Background Elements -->
+    <div
+      class="fixed top-32 left-10 text-aqua-main opacity-40 text-4xl animate-float-slow -z-10"
+    >
+      <i class="fas fa-code"></i>
+    </div>
+    <div
+      class="fixed bottom-40 right-10 text-teal-soft opacity-60 text-6xl animate-float-medium -z-10"
+    >
+      <i class="fas fa-graduation-cap"></i>
+    </div>
+    <div
+      class="fixed top-1/2 left-4 text-accent-yellow opacity-50 text-2xl animate-float-fast -z-10"
+    >
+      <i class="fas fa-star"></i>
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav
+      class="fixed w-full z-50 top-4 px-4 md:px-8 transition-all duration-300"
+      id="navbar"
+    >
+      <div
+        class="max-w-6xl mx-auto bg-white/90 backdrop-blur-md border-2 border-neutral-border rounded-2xl px-5 md:px-6 py-3 flex justify-between items-center shadow-badge"
+      >
+        <div class="flex items-center gap-3 shrink-0 cursor-pointer">
+          <div
+            class="w-10 h-10 bg-teal-main text-white rounded-xl flex items-center justify-center font-display font-bold text-xl border-2 border-teal-main"
+          >
+            F<span class="text-aqua-main">.</span>
+          </div>
+          <div class="hidden sm:block">
+            <h1
+              class="font-bold text-neutral-text text-base leading-none tracking-tight font-display"
+            >
+              Fatasya.
+            </h1>
+            <p
+              class="text-[9px] text-neutral-muted font-bold uppercase tracking-widest mt-0.5"
+            >
+              E-Portofolio
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-muted"
+        >
+          <a href="index.html" class="nav-link hover:text-teal-main">Beranda</a>
+          <a href="profil.html" class="nav-link hover:text-teal-main">Profil</a>
+          <a href="lembar-kerja-3.html" class="nav-link hover:text-teal-main"
+            >Lembar Kerja 3</a
+          >
+          <a
+            href="uts.html"
+            class="nav-link active text-teal-main font-semibold"
+            >UTS</a
+          >
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <a
+            href="index.html#kontak"
+            aria-label="Hubungi Saya"
+            class="hidden md:flex bg-teal-main text-white border-2 border-teal-main shadow-[4px_4px_0px_rgba(0,95,115,0.2)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,95,115,0.3)] transition-all px-5 py-2.5 rounded-xl text-sm font-bold items-center gap-2 font-display"
+          >
+            Hubungi Saya <i class="fab fa-whatsapp text-aqua-main"></i>
+          </a>
+          <button
+            id="mobile-menu-btn"
+            aria-label="Toggle Menu"
+            class="md:hidden w-10 h-10 bg-aqua-soft text-teal-main rounded-xl border-2 border-aqua-main flex items-center justify-center focus:outline-none"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden absolute top-20 left-4 right-4 bg-white border-2 border-neutral-border shadow-bento rounded-2xl flex flex-col p-4 space-y-2 font-medium z-40"
+      >
+        <a
+          href="index.html"
+          class="block w-full text-neutral-text hover:bg-neutral-bg p-3 rounded-xl"
+          >Beranda</a
+        >
+        <a
+          href="profil.html"
+          class="block w-full text-neutral-text hover:bg-neutral-bg p-3 rounded-xl"
+          >Profil</a
+        >
+        <a
+          href="lembar-kerja-3.html"
+          class="block w-full text-neutral-text hover:bg-neutral-bg p-3 rounded-xl"
+          >Lembar Kerja 3</a
+        >
+        <a
+          href="uts.html"
+          class="block w-full text-teal-main bg-teal-soft p-3 rounded-xl font-bold font-display"
+          >UTS</a
+        >
+      </div>
+    </nav>
+
+    <main class="w-full max-w-6xl mx-auto pt-36 pb-20 px-5 md:px-8 space-y-12">
+      <!-- ================= HEADER SECTION ================= -->
+      <section class="text-center relative z-10 gs-reveal">
+        <div
+          class="inline-flex items-center gap-2 bg-white border-2 border-aqua-main px-4 py-1.5 rounded-full shadow-badge mb-4"
+        >
+          <i class="fas fa-laptop-code text-teal-main animate-bounce"></i>
+          <span
+            class="text-[10px] font-bold text-teal-main uppercase tracking-widest font-display"
+            >PPG</span
+          >
+        </div>
+
+        <h1
+          class="text-3xl md:text-5xl font-extrabold text-neutral-text font-display leading-tight tracking-tight mt-2 relative inline-block"
+        >
+          Ujian Tengah Semester
+          <span class="absolute -top-4 -right-8 text-2xl animate-float-medium"
+            >✨</span
+          >
+        </h1>
+        <p
+          class="text-neutral-muted mt-4 max-w-2xl mx-auto text-sm md:text-base font-medium"
+        >
+          Penyajian Modul Ajar dan Video Pelaksanaan Praktik Mengajar Mandiri
+          Siklus 1
+        </p>
+      </section>
+
+      <!-- ================= 1. MODUL AJAR SECTION ================= -->
+      <!-- Penggunaan items-stretch pada grid membuat kedua kolom memiliki tinggi yang sama persis -->
+      <section
+        class="grid grid-cols-1 lg:grid-cols-12 gap-6 gs-reveal items-stretch"
+      >
+        <!-- Teks Analisis Modul Ajar -->
+        <div
+          class="lg:col-span-7 bg-white bento-card p-6 md:p-8 mechanical-hover bounce-on-hover relative overflow-hidden h-full flex flex-col justify-center"
+        >
+          <div
+            class="absolute -right-10 -top-10 text-[100px] text-neutral-bg opacity-50 z-0 pointer-events-none"
+          >
+            <i class="fas fa-file-alt"></i>
+          </div>
+
+          <div class="relative z-10">
+            <h2
+              class="text-xl md:text-2xl font-bold text-neutral-text font-display mb-5 border-b-2 border-neutral-border pb-4 leading-snug"
+            >
+              Produk rancangan/perencanaan pembelajaran lengkap yang terbaik
+              dari praktik mengajar mandiri siklus 1
+            </h2>
+
+            <div
+              class="space-y-4 text-sm md:text-base text-neutral-muted leading-relaxed text-justify"
+            >
+              <p>
+                Produk rancangan pembelajaran yang digunakan dalam praktik
+                mengajar mandiri siklus 1 adalah Modul Ajar Informatika materi
+                Berpikir Komputasional dan Dekomposisi untuk kelas VII/Fase D.
+                Rancangan ini dibuat sebagai pedoman pelaksanaan pembelajaran
+                selama 3 JP atau 120 menit dengan menggunakan model Problem
+                Based Learning (PBL). Di dalamnya sudah terdapat tujuan
+                pembelajaran, materi, kegiatan pembelajaran, media yang
+                digunakan, asesmen, serta kegiatan remedial, pengayaan, dan
+                refleksi.
+              </p>
+              <p>
+                Pada rancangan tersebut, pembelajaran diawali dengan apersepsi
+                dan masalah sederhana yang dekat dengan kehidupan siswa.
+                Selanjutnya siswa dikenalkan dengan berpikir komputasional dan
+                empat fondasinya, dengan fokus pada dekomposisi. Siswa kemudian
+                diberikan beberapa contoh, mencoba memecahkan masalah secara
+                berpasangan, dan mengerjakan LKPD Dekomposisi secara individu.
+                Kegiatan diakhiri dengan pembahasan jawaban, penguatan materi,
+                dan refleksi.
+              </p>
+              <p>
+                Rancangan ini dipilih sebagai produk terbaik pada siklus 1
+                karena antara tujuan, kegiatan pembelajaran, materi, media,
+                LKPD, dan penilaiannya sudah dibuat saling berkaitan. Materi
+                yang diberikan melalui PPT juga langsung mendukung kegiatan pada
+                LKPD, sehingga siswa mendapatkan penjelasan dan contoh sebelum
+                mengerjakan tugas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview Modul Ajar (Preview akan flex-1 untuk mengisi ruang kosong) -->
+        <div
+          class="lg:col-span-5 bg-aqua-soft bento-card p-6 border-aqua-main mechanical-hover flex flex-col h-full"
+        >
+          <div class="flex items-center gap-3 mb-4 shrink-0">
+            <div
+              class="w-10 h-10 bg-teal-main text-white rounded-lg flex items-center justify-center text-lg shadow-sm"
+            >
+              <i class="fas fa-file-pdf"></i>
+            </div>
+            <h3 class="font-bold text-neutral-text font-display">
+              Preview Modul Ajar
+            </h3>
+          </div>
+
+          <!-- flex-1 membuat iframe ini mengisi seluruh ruang tinggi yang tersisa -->
+          <div
+            class="iframe-wrapper shadow-sm flex-1 min-h-[300px] w-full relative"
+          >
+            <iframe
+              src="https://drive.google.com/file/d/1Nnl-AzVm3Xti6KEy9sorrYBYJ-SnZhVX/preview"
+            ></iframe>
+          </div>
+
+          <!-- Cute Tag -->
+          <div class="mt-4 flex gap-2 shrink-0">
+            <span
+              class="text-[10px] font-bold bg-white text-teal-main px-3 py-1 rounded-full border border-aqua-main shadow-badge font-mono"
+              >PDF</span
+            >
+            <span
+              class="text-[10px] font-bold bg-white text-teal-main px-3 py-1 rounded-full border border-aqua-main shadow-badge font-mono"
+              >Modul_Ajar_Informatika.pdf</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 2. VIDEO SECTION ================= -->
+      <section
+        class="grid grid-cols-1 lg:grid-cols-12 gap-6 gs-reveal items-stretch"
+      >
+        <!-- Preview Video (Preview akan flex-1 untuk mengisi ruang kosong) -->
+        <div
+          class="lg:col-span-5 bg-accent-peach bento-card p-6 border-neutral-border mechanical-hover flex flex-col order-2 lg:order-1 h-full relative overflow-hidden"
+        >
+          <div
+            class="absolute -left-6 -bottom-6 text-[100px] text-white opacity-60 z-0 pointer-events-none"
+          >
+            <i class="fas fa-play-circle"></i>
+          </div>
+          <div class="relative z-10 flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-4 shrink-0">
+              <div
+                class="w-10 h-10 bg-orange-400 text-white rounded-lg flex items-center justify-center text-lg shadow-sm"
+              >
+                <i class="fas fa-video"></i>
+              </div>
+              <h3 class="font-bold text-neutral-text font-display">
+                Preview Video
+              </h3>
+            </div>
+
+            <!-- flex-1 membuat iframe ini mengisi seluruh ruang tinggi yang tersisa -->
+            <div
+              class="iframe-wrapper border-orange-200 shadow-sm flex-1 min-h-[300px] w-full relative group bg-neutral-text"
+            >
+              <iframe
+                src="https://drive.google.com/file/d/1ix1wnSwnjLTlTNItGYgk5-WCqjlgKwzY/preview"
+                allow="autoplay"
+              ></iframe>
+              <div
+                class="absolute inset-0 pointer-events-none border-4 border-transparent group-hover:border-aqua-main transition-colors duration-300 rounded-lg"
+              ></div>
+            </div>
+
+            <!-- Cute Tag -->
+            <div class="mt-4 flex gap-2 shrink-0">
+              <span
+                class="text-[10px] font-bold bg-white text-orange-500 px-3 py-1 rounded-full border border-orange-200 shadow-badge font-mono"
+                >MP4</span
+              >
+              <span
+                class="text-[10px] font-bold bg-white text-orange-500 px-3 py-1 rounded-full border border-orange-200 shadow-badge font-mono"
+                >Praktik_Mandiri.mp4</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Teks Analisis Video -->
+        <div
+          class="lg:col-span-7 bg-white bento-card p-6 md:p-8 mechanical-hover bounce-on-hover order-1 lg:order-2 h-full flex flex-col justify-center"
+        >
+          <h2
+            class="text-xl md:text-2xl font-bold text-neutral-text font-display mb-5 border-b-2 border-neutral-border pb-4 leading-snug"
+          >
+            Produk video pelaksanaan praktik mengajar mandiri dari rancangan
+            atau perencanaan pembelajaran yang dipilih
+          </h2>
+
+          <div
+            class="space-y-4 text-sm md:text-base text-neutral-muted leading-relaxed text-justify"
+          >
+            <p>
+              Produk video merupakan dokumentasi pelaksanaan praktik mengajar
+              mandiri siklus 1 yang menggunakan rancangan pembelajaran yang sama
+              dengan Modul Ajar Informatika materi Berpikir Komputasional dan
+              Dekomposisi. Dalam pelaksanaannya, kegiatan pembelajaran mengikuti
+              alur yang telah dirancang, mulai dari kegiatan pembukaan,
+              penyampaian masalah, penjelasan materi, pemberian contoh, latihan,
+              pengerjaan LKPD, pembahasan jawaban, sampai dengan refleksi dan
+              penutupan.
+            </p>
+            <p>
+              Pelaksanaan dalam video menunjukkan penerapan dari rancangan yang
+              telah dibuat, terutama pada penggunaan PPT sebagai media untuk
+              menjelaskan materi dan LKPD sebagai tugas latihan siswa. Siswa
+              diarahkan untuk memahami konsep dekomposisi melalui contoh yang
+              dekat dengan kehidupan sehari-hari, kemudian mencoba menerapkannya
+              pada berbagai permasalahan yang terdapat dalam LKPD. Rangkaian
+              tersebut sesuai dengan langkah pembelajaran yang terdapat dalam
+              Modul Ajar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3. GOOGLE DRIVE CTA BUTTON ================= -->
+      <section class="flex justify-center pt-8 pb-4 gs-reveal">
+        <a
+          href="https://drive.google.com/drive/folders/1_AHZqwOu7XmMZhYp0PLyJNq_1tIbhNwm?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative group"
+        >
+          <!-- Animasi Pulse di Belakang Button -->
+          <div
+            class="absolute -inset-1 bg-aqua-main rounded-2xl blur opacity-40 group-hover:opacity-100 transition duration-500 animate-pulse-teal"
+          ></div>
+
+          <div
+            class="relative flex items-center gap-4 bg-teal-main text-white px-8 py-5 rounded-2xl border-2 border-teal-main shadow-drive group-hover:translate-x-1 group-hover:translate-y-1 group-hover:shadow-[2px_2px_0px_rgba(0,95,115,0.3)] transition-all duration-200"
+          >
+            <div
+              class="w-12 h-12 bg-white text-teal-main rounded-xl flex items-center justify-center text-2xl shadow-sm group-hover:scale-110 transition-transform"
+            >
+              <i class="fab fa-google-drive"></i>
+            </div>
+            <div class="text-left">
+              <p
+                class="text-[10px] font-bold text-aqua-main uppercase tracking-widest font-display"
+              >
+                Akses Dokumen Lengkap
+              </p>
+              <h3 class="font-bold text-lg font-display">
+                Folder Google Drive UTS
+              </h3>
+            </div>
+            <i
+              class="fas fa-arrow-right ml-4 text-aqua-main opacity-70 group-hover:opacity-100 group-hover:translate-x-2 transition-all"
+            ></i>
+          </div>
+        </a>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+      class="w-full border-t-2 border-neutral-border bg-white mt-auto z-10 relative"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center text-center gap-2"
+      >
+        <div class="text-teal-main text-xl mb-2 float-slow flex gap-3">
+          <i class="fas fa-graduation-cap"></i>
+          <i class="fas fa-code text-aqua-main"></i>
+          <i class="fas fa-laptop text-neutral-muted"></i>
+        </div>
+        <p
+          class="text-xs font-bold text-neutral-muted font-display tracking-widest uppercase"
+        >
+          &copy; 2026 FATASYA AULIA SUYONO. E-PORTOFOLIO PPG.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+      // 1. Mobile Menu Logic
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        const icon = btn.querySelector("i");
+        if (menu.classList.contains("hidden")) {
+          icon.classList.replace("fa-times", "fa-bars");
+        } else {
+          icon.classList.replace("fa-bars", "fa-times");
+        }
+      });
+
+      // 2. Setup GSAP Animations (Crisp & Mechanical + Stagger)
+      document.addEventListener("DOMContentLoaded", function () {
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        if (!prefersReducedMotion) {
+          gsap.registerPlugin(ScrollTrigger);
+
+          // Reveal elements as they scroll into view
+          const revealElements = document.querySelectorAll(".gs-reveal");
+
+          revealElements.forEach((el, index) => {
+            gsap.from(el, {
+              scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none none",
+              },
+              y: 40,
+              opacity: 0,
+              duration: 0.6,
+              delay: index % 2 === 0 ? 0 : 0.1, // Slight stagger for adjacent grid items
+              ease: "power2.out",
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
